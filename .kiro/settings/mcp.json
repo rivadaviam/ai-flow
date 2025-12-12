@@ -9,7 +9,10 @@
         "FASTMCP_LOG_LEVEL": "ERROR"
       },
       "disabled": false,
-      "autoApprove": []
+      "autoApprove": [
+        "search_documentation",
+        "read_documentation"
+      ]
     },
     "terraform": {
       "command": "uvx",
@@ -78,6 +81,23 @@
       "disabled": false,
       "autoApprove": [
         "list_icons"
+      ]
+    },
+    "cloudformation": {
+      "command": "uvx",
+      "args": [
+        "awslabs.cfn-mcp-server@latest"
+      ],
+      "env": {
+        "AWS_PROFILE": "default",
+        "AWS_REGION": "us-east-1",
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "create_stack",
+        "update_stack",
+        "describe_stack"
       ]
     }
   }

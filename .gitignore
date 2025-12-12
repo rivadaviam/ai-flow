@@ -376,21 +376,59 @@ $RECYCLE.BIN/
 **/mcp-*.log
 
 # =============================================================================
-# AI Flow Project Structure
+# AI Flow Framework - Only Framework Files Allowed
 # =============================================================================
 
-# Project-specific files (not part of AI Flow framework)
+# CRITICAL: This is the AI Flow framework repository
+# Only framework files should be committed, NOT project-specific executions
+
+# =============================================================================
+# Project Execution Artifacts (NEVER COMMIT)
+# =============================================================================
+
+# Terraform execution artifacts from any project run
+terraform/environments/*/terraform.tfstate*
+terraform/environments/*/.terraform/
+terraform/environments/*/.terraform.lock.hcl
+terraform/environments/*/main.tf
+terraform/environments/*/variables.tf
+terraform/environments/*/outputs.tf
+terraform/environments/*/versions.tf
+terraform/environments/*/*.zip
+terraform/environments/*/*.py
+terraform/environments/*/*.json
+terraform/environments/*/*.md
+terraform/environments/*/generated-diagrams/
+terraform/environments/*/lambda-functions/
+
+# Source code from project executions
+src/lambda-functions/*/
+src/scripts/deployment/
+src/scripts/utilities/*.py
+!src/scripts/utilities/validate-project-structure.sh
+!src/scripts/utilities/fix-project-structure.sh
+
+# Build artifacts from any project execution
+build/
+
+# Project-specific documentation
 docs/projects/*.md
 docs/projects/**/*.md
+docs/deployment-summary.md
+docs/cost-analysis.md
+docs/*-summary.md
+docs/*-analysis.md
 
-# Individual project specifications should not be committed to AI Flow
-# These are user-specific project definitions that vary per workspace
+# Generated diagrams from project executions
+**/generated-diagrams/
+**/*-architecture.png
+**/*-diagram.png
 
 # =============================================================================
-# Cleanup Patterns (Files that should never be committed)
+# Root Directory Protection (AI Flow Framework Only)
 # =============================================================================
 
-# Common temporary files that end up in root
+# NEVER allow project execution files in root
 /response.json
 /test-*.json
 /test-*.txt
@@ -407,7 +445,7 @@ docs/projects/**/*.md
 /*.bak
 /*.backup
 
-# Terraform files that should be in terraform/ directory
+# NEVER allow Terraform execution files in root
 /main.tf
 /variables.tf
 /outputs.tf
@@ -418,25 +456,89 @@ docs/projects/**/*.md
 /.terraform/
 /.terraform.lock.hcl
 
-# Lambda packages that should be in build/
+# NEVER allow Lambda packages in root
 /lambda-*.zip
 /function-*.zip
 /*-function.zip
+/*-api.zip
+/*-ingestion.zip
 
-# Documentation that should be in docs/
+# NEVER allow project documentation in root
 /*-DIAGRAM.md
 /*-STATUS.md
 /*-SUMMARY.md
 /DEPLOYMENT*.md
 /MANUAL-*.md
 /README-*.md
+/atenti-*.md
+/*-poc-*.md
 
-# Scripts that should be in src/scripts/
+# NEVER allow project scripts in root
 /create_*.py
 /delete_*.py
 /setup_*.py
 /deploy_*.py
 /test_*.py
+/opensearch_*.py
+/vector_*.py
+
+# =============================================================================
+# AI Flow Framework Whitelist (ONLY These Files Allowed)
+# =============================================================================
+
+# Framework structure files (allowed)
+!.kiro/
+!.vscode/
+!docs/
+!README.md
+!.gitignore
+!.gitattributes
+
+# Framework documentation (allowed)
+!docs/README.md
+!docs/lessons-learned.md
+!docs/mcp-usage-guide.md
+!docs/quick-reference.md
+!docs/terraform-project-structure.md
+!docs/examples/
+!docs/patterns/
+!docs/templates/
+
+# Framework scripts (allowed - only these specific ones)
+!src/scripts/utilities/validate-project-structure.sh
+!src/scripts/utilities/fix-project-structure.sh
+
+# Everything else in src/ is project-specific (ignored)
+src/
+!src/scripts/
+!src/scripts/utilities/
+src/scripts/utilities/*
+!src/scripts/utilities/validate-project-structure.sh
+!src/scripts/utilities/fix-project-structure.sh
+
+# =============================================================================
+# AI Flow Framework Repository Rules
+# =============================================================================
+
+# This repository contains ONLY the AI Flow framework
+# Project executions should NOT be committed to this repository
+
+# ALLOWED FILES (Framework Only):
+# ✅ .kiro/ - Kiro configuration and steering rules
+# ✅ .vscode/ - VS Code workspace settings
+# ✅ docs/ - Framework documentation (patterns, templates, guides)
+# ✅ README.md - Framework overview
+# ✅ .gitignore - This file
+# ✅ src/scripts/utilities/validate-project-structure.sh - Framework validation
+# ✅ src/scripts/utilities/fix-project-structure.sh - Framework auto-fix
+
+# FORBIDDEN FILES (Project Executions):
+# ❌ terraform/environments/*/main.tf - Project-specific infrastructure
+# ❌ terraform/environments/*/*.zip - Project build artifacts
+# ❌ src/lambda-functions/ - Project source code
+# ❌ build/ - Project build directory
+# ❌ docs/projects/*.md - Project specifications
+# ❌ Any generated diagrams, cost analyses, or deployment summaries
 
 # =============================================================================
 # End of .gitignore

@@ -1,160 +1,57 @@
-# MCP Server Workflows
+# MCP Server Workflows - Quick Reference
 
-## Available MCP Servers
+## 🔧 7 MCP Servers Available
 
-### 1. `aws-documentation` - Official AWS Documentation
-**Role**: Source of detailed official AWS documentation
-**Use for**:
-- Retrieve official AWS documentation in markdown format
-- Search AWS documentation with natural language queries
-- Get comprehensive service information and API references
-- Double-check API behaviors, limits, configuration options
+### 1. `aws-documentation` - AWS Docs Research (MANDATORY FIRST)
+**Use**: Search AWS docs, get service info, check API behaviors
+**Example**: "API Gateway Lambda integration event formats"
 
-**Typical workflows**:
-- "Get documentation for S3 server-side encryption and bucket security"
-- "Search for Bedrock Knowledge Bases IAM requirements"
-- "Find Lambda function configuration best practices"
+### 2. `terraform` - Infrastructure Expert  
+**Use**: Generate/validate Terraform, Checkov security, deploy infrastructure
+**Example**: "Execute terraform plan in terraform/environments/dev"
 
-### 2. `terraform` - Infrastructure as Code Expert
-**Role**: Comprehensive Terraform and AWS infrastructure expert
-**Use for**:
-- Generate syntactically correct Terraform for AWS resources
-- Validate Terraform configuration (init, plan, validate, apply)
-- Run security analysis with Checkov integration
-- Search AWS provider documentation and modules
-- Structure code into modules, variables, outputs
+### 3. `cloudformation` - CloudFormation (S3 Vectors Support) ⭐ NEW
+**Use**: Deploy CloudFormation templates with S3 Vectors for Knowledge Base
+**Example**: "Deploy Knowledge Base with S3 Vectors via CloudFormation"
 
-**Typical workflows**:
-- "Generate a Terraform module for S3 bucket with versioning and encryption"
-- "Validate this Terraform configuration and run security checks"
-- "Find AWS provider syntax for Bedrock, Lambda, API Gateway resources"
-- "Execute terraform plan in terraform/environments/dev directory"
+### 4. `aws-pricing` - Cost Analysis
+**Use**: Get pricing data, compare regions, generate cost reports
+**Example**: "Cost of Lambda 1000 requests/day"
 
-### 3. `aws-pricing` - Cost Analysis & Planning
-**Role**: Real-time AWS pricing information and cost analysis
-**Use for**:
-- Get current AWS pricing data with advanced filtering
-- Compare pricing across different AWS regions
-- Estimate costs for infrastructure components
-- Generate detailed cost analysis reports
-- Analyze CDK and Terraform projects for cost implications
+### 5. `bedrock-agentcore` - Bedrock Platform
+**Use**: AgentCore docs, deployment guides, Memory/Code Interpreter
+**Example**: "Deploy agent to AgentCore Runtime"
 
-**Typical workflows**:
-- "What's the cost of running Lambda with 1000 requests/day?"
-- "Compare S3 storage costs between us-east-1 and eu-west-1"
-- "Generate a cost report for this Terraform configuration"
-- "Find the cheapest EC2 instances with at least 8GB RAM"
+### 6. `bedrock-kb-retrieval` - Knowledge Base Interface
+**Use**: Query Knowledge Bases, get citations, filter results
+**Example**: "Query KB about Lambda best practices"
 
-### 4. `bedrock-agentcore` - Bedrock AgentCore Platform
-**Role**: Amazon Bedrock AgentCore documentation and deployment guide
-**Use for**:
-- Search comprehensive AgentCore documentation
-- Get deployment guides for AgentCore Runtime
-- Learn about AgentCore Memory, Code Interpreter, Browser tools
-- Understand AgentCore Gateway and Identity management
-- Access API references and tutorials
+### 7. `aws-diagram` - Architecture Diagrams
+**Use**: Create AWS diagrams, sequence flows, visualizations
+**Example**: "AWS architecture with Lambda, API Gateway, S3"
 
-**Typical workflows**:
-- "How do I deploy an agent to AgentCore Runtime?"
-- "Show me AgentCore Memory integration examples"
-- "What are the steps to set up AgentCore Gateway?"
-- "Find documentation about AgentCore Code Interpreter security"
+## 🔄 Core Workflows (MANDATORY ORDER)
 
-### 5. `bedrock-kb-retrieval` - Bedrock Knowledge Base Interface
-**Role**: Direct interface to Amazon Bedrock Knowledge Bases for querying and retrieval
-**Use for**:
-- Discover and explore available Bedrock Knowledge Bases
-- Query Knowledge Bases with natural language
-- Retrieve information with citations and source references
-- Filter results by specific data sources
-- Use reranking capabilities for improved relevance
+### A. New Infrastructure: `aws-documentation` → `terraform` → `aws-pricing`
+1. Research service integration patterns & event formats
+2. Generate Terraform with proper syntax & Checkov security  
+3. Estimate costs & optimize selection
 
-**Typical workflows**:
-- "List all available Knowledge Bases and their data sources"
-- "Query the knowledge base about AWS Lambda best practices"
-- "Find information about S3 security from the KB with citations"
-- "Search the knowledge base for Terraform examples and show sources"
+### B. Terraform Deploy: Validate → Execute → Monitor
+1. **MANDATORY**: Run `./src/scripts/utilities/validate-project-structure.sh`
+2. **MANDATORY**: Use `terraform/environments/dev` directory
+3. **MANDATORY**: Ensure Lambda in `src/lambda-functions/`, builds in `build/lambda-packages/`
+4. Execute: `terraform` MCP init → plan → apply
 
-### 6. `aws-diagram` - AWS Architecture Diagram Generation
-**Role**: Professional diagram generation using Python diagrams package DSL
-**Use for**:
-- Create AWS architecture diagrams with proper icons and connections
-- Generate sequence diagrams for process flows
-- Build flow charts and decision trees
-- Create class diagrams for object relationships
-- Visualize Kubernetes and on-premises architectures
-- Generate custom diagrams with styling and clustering
-
-**Typical workflows**:
-- "Create an AWS architecture diagram showing Lambda, API Gateway, and S3"
-- "Generate a sequence diagram for user authentication flow"
-- "Build a flow chart showing the CI/CD pipeline process"
-- "Create a diagram of the Terraform module structure"
-- "Visualize the Bedrock AgentCore architecture with all components"
-
-## Core Workflow Patterns
-
-### A. Design and Generate New Terraform Infrastructure
-1. **MANDATORY**: Use `aws-documentation` to research AWS service integration patterns and event formats
-2. **MANDATORY**: Use `aws-documentation` to understand service limits, quotas, and constraints
-3. Use `aws-documentation` to research AWS service requirements and best practices
-4. Use `terraform` to generate initial Terraform configuration with proper syntax
-5. Use `terraform` to validate configuration and run security checks with Checkov
-6. Use `aws-pricing` to estimate costs and optimize resource selection
-7. Refine until valid, secure, and cost-effective
-
-### B. Deploy and Manage Terraform Infrastructure
-1. **MANDATORY**: Use proper working directory (`terraform/environments/dev`)
-2. Use `terraform` MCP to execute init, plan, and validate commands
-3. Review plan output for security and cost implications
-4. Use `terraform` MCP to apply changes with proper validation
-5. Use `aws-documentation` for troubleshooting and configuration references
-
-### C. Cost Analysis and Optimization
-1. Use `aws-pricing` to get real-time pricing for AWS services
-2. Compare costs across regions and instance types
-3. Generate detailed cost reports with usage scenarios
-4. Use `terraform` to analyze existing infrastructure for cost optimization
-
-### D. Bedrock AgentCore Development
-1. Use `bedrock-agentcore` to search documentation and tutorials
-2. Follow deployment guides for AgentCore Runtime setup
-3. Integrate AgentCore Memory, Code Interpreter, and other services
-4. Use `aws-documentation` for additional AWS service integration
-
-### E. Knowledge Base Query and Retrieval
-1. Use `bedrock-kb-retrieval` to discover available Knowledge Bases
-2. Query Knowledge Bases with natural language for specific information
-3. Retrieve detailed information with proper citations and source references
-4. Filter and rerank results for improved relevance and accuracy
-
-### F. Architecture Diagram Creation and Documentation
-1. Use `aws-diagram` to explore available diagram examples and icon libraries
-2. Design architecture diagrams using Python diagrams package DSL syntax
-3. Generate professional PNG diagrams with proper AWS service icons
-4. Create sequence diagrams for process flows and user interactions
-5. Build flow charts for decision trees and workflow documentation
-6. Use clustering and styling for organized, readable diagrams
-
-### G. AWS Service Integration Research (MANDATORY BEFORE CODING)
-1. **CRITICAL**: Use `aws-documentation` to search for service integration patterns
-2. **CRITICAL**: Research event formats and data structures (especially for Lambda integrations)
-3. **CRITICAL**: Understand API versions and compatibility (e.g., API Gateway v1 vs v2)
-4. **CRITICAL**: Review authentication and permission requirements
-5. **CRITICAL**: Study error handling and troubleshooting patterns
-6. **CRITICAL**: Validate assumptions with official AWS documentation
-
-#### Example: API Gateway + Lambda Integration Research
+### C. AWS Integration Research (MANDATORY BEFORE CODING)
 ```bash
-# Step 1: Research integration patterns
+# ALWAYS research first - prevents 80% of integration issues
 mcp_aws_documentation search_documentation --search_phrase "API Gateway Lambda integration"
-
-# Step 2: Understand event format differences
 mcp_aws_documentation search_documentation --search_phrase "API Gateway v1 v2 event format differences"
-
-# Step 3: Read specific integration guide
-mcp_aws_documentation read_documentation --url "api_gateway_lambda_integration_url"
-
-# Step 4: Research common issues
-mcp_aws_documentation search_documentation --search_phrase "API Gateway Lambda integration troubleshooting"
 ```
+
+### D. Diagrams: `aws-diagram` MCP ONLY (never manual)
+1. Explore examples → List icons → Generate with proper DSL
+
+### E. Cost Analysis: `aws-pricing` MCP discovery workflow
+1. Get service codes → Get attributes → Get values → Query pricing
