@@ -10,9 +10,17 @@
 │   └── steering/           # AI assistant guidance documents
 │       ├── product.md      # Product overview and purpose
 │       ├── tech.md         # Technology stack and commands
-│       └── structure.md    # This file - project organization
-└── .vscode/                # VS Code workspace settings
-    └── settings.json       # Editor configuration
+│       ├── structure.md    # This file - project organization
+│       └── mcp-workflows.md # MCP server workflows and patterns
+├── .vscode/                # VS Code workspace settings
+│   └── settings.json       # Editor configuration
+├── docs/                   # Documentation and context for infrastructure generation
+│   ├── README.md          # Documentation overview and quick start
+│   ├── patterns/          # Common architecture patterns (serverless, microservices, etc.)
+│   ├── examples/          # Complete project examples with cost estimates
+│   ├── templates/         # Reusable Terraform templates
+│   └── projects/          # Your custom project specifications
+└── README.md              # Project overview and AI-Flow description
 ```
 
 ## Key Directories
