@@ -17,6 +17,6 @@ This workspace is an AWS infrastructure development environment focused on Terra
 - Bedrock knowledge base retrieval capabilities
 
 ## Target Environment
-- AWS Profile: `kiro-dev`
+- AWS Profile: `default` (o usar variable AWS_PROFILE)
 - Primary Region: `us-east-1`
 - Focus on infrastructure automation and cloud architecture

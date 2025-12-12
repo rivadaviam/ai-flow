@@ -15,7 +15,7 @@ Un AI-Flow es un flujo de trabajo donde la inteligencia artificial actúa como u
 ```
 Usuario → Kiro AI Agent → MCP Servers → AWS Resources
                 ↓
-        [7 Servidores MCP Especializados]
+        [6 Servidores MCP Especializados]
                 ↓
         Terraform Code + Documentation
 ```
@@ -24,44 +24,42 @@ Usuario → Kiro AI Agent → MCP Servers → AWS Resources
 
 | Servidor | Propósito | Casos de Uso |
 |----------|-----------|--------------|
-| `aws-terraform-arch` | Arquitecto Terraform + Seguridad | Revisión de código, mejores prácticas AWS |
-| `hashicorp-terraform` | Experto en lenguaje Terraform | Generación de código, validación sintáctica |
-| `aws-knowledge` | Asistente de diseño AWS | Patrones de arquitectura, recomendaciones |
+| `terraform` | Experto Terraform + AWS + Checkov | Generación, validación, seguridad |
 | `aws-documentation` | Documentación oficial AWS | Referencias, límites, configuraciones |
-| `bedrock-kb-retrieval` | Interface Bedrock KB | Consultas a bases de conocimiento |
-| `aws-diagram` | Generador de diagramas | Visualización de arquitecturas |
-| `aws-pricing` | Análisis de costos | Estimaciones, comparaciones de precios |
+| `aws-pricing` | Análisis de costos en tiempo real | Estimaciones, comparaciones de precios |
+| `bedrock-agentcore` | Plataforma Bedrock AgentCore | Deployment, Memory, Code Interpreter |
+| `bedrock-kb-retrieval` | Interface Bedrock Knowledge Bases | Consultas con citaciones y fuentes |
+| `aws-diagram` | Generador de diagramas profesionales | Arquitecturas AWS, secuencias, flujos |
 
 ## Flujos de Trabajo Principales
 
 ### 🏗️ Diseño de Nueva Infraestructura
-1. **Consulta de patrones** → `aws-knowledge`
-2. **Generación inicial** → `hashicorp-terraform`
-3. **Revisión de seguridad** → `aws-terraform-arch`
-4. **Documentación** → `aws-documentation`
-5. **Visualización** → `aws-diagram`
-6. **Análisis de costos** → `aws-pricing`
+1. **Investigación** → `aws-documentation` para requisitos y mejores prácticas
+2. **Generación inicial** → `terraform` para código Terraform con sintaxis correcta
+3. **Validación y seguridad** → `terraform` con integración Checkov
+4. **Análisis de costos** → `aws-pricing` para optimización de recursos
+5. **Visualización** → `aws-diagram` para diagramas de arquitectura
 
 ### 🔒 Validación y Endurecimiento
-1. **Validación sintáctica** → `hashicorp-terraform`
-2. **Análisis de seguridad** → `aws-terraform-arch`
-3. **Aplicación de mejoras** automática
+1. **Validación completa** → `terraform` (init, plan, validate)
+2. **Análisis de seguridad** → `terraform` con Checkov integrado
+3. **Documentación de provider** → `terraform` para sintaxis AWS
 
 ### 📊 Documentación y Visualización
-1. **Generación de diagramas** → `aws-diagram`
-2. **Referencias oficiales** → `aws-documentation`
-3. **Consideraciones de costo** → `aws-pricing`
+1. **Diagramas profesionales** → `aws-diagram` con iconos AWS
+2. **Referencias oficiales** → `aws-documentation` para troubleshooting
+3. **Reportes de costos** → `aws-pricing` con análisis detallado
 
-### 🤖 Integración con Bedrock
-1. **Descubrimiento de KBs** → `bedrock-kb-retrieval`
-2. **Validación de conectividad**
-3. **Consultas de prueba**
+### 🤖 Integración con Bedrock AgentCore
+1. **Documentación de plataforma** → `bedrock-agentcore` para guías de deployment
+2. **Descubrimiento de KBs** → `bedrock-kb-retrieval` para explorar Knowledge Bases
+3. **Consultas con citaciones** → `bedrock-kb-retrieval` para información detallada
 
 ## Configuración del Entorno
 
 ### Perfil AWS
 ```bash
-AWS_PROFILE=kiro-dev
+AWS_PROFILE=default
 AWS_REGION=us-east-1
 ```
 
@@ -124,10 +122,21 @@ AWS_REGION=us-east-1
 
 ## Próximos Pasos
 
-1. **Configura tu entorno AWS** con el perfil `kiro-dev`
+1. **Configura tu entorno AWS** con el perfil `default`
 2. **Inicia Kiro** y describe tu necesidad de infraestructura
 3. **Deja que el AI-Flow** genere y optimice tu solución
 4. **Revisa y despliega** el código Terraform generado
+
+## Servidores MCP Configurados
+
+Los 6 servidores MCP están configurados y listos para usar:
+
+- ✅ `aws-documentation` - Documentación oficial AWS
+- ✅ `terraform` - Terraform + AWS Provider + Checkov
+- ✅ `aws-pricing` - Análisis de costos en tiempo real  
+- ✅ `bedrock-agentcore` - Plataforma Bedrock AgentCore
+- ✅ `bedrock-kb-retrieval` - Interface a Knowledge Bases
+- ✅ `aws-diagram` - Generación de diagramas AWS
 
 ---
 
