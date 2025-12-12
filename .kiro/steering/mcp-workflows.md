@@ -28,7 +28,7 @@
 - "Generate a Terraform module for S3 bucket with versioning and encryption"
 - "Validate this Terraform configuration and run security checks"
 - "Find AWS provider syntax for Bedrock, Lambda, API Gateway resources"
-- "Execute terraform plan and show me the changes"
+- "Execute terraform plan in terraform/environments/dev directory"
 
 ### 3. `aws-pricing` - Cost Analysis & Planning
 **Role**: Real-time AWS pricing information and cost analysis
@@ -95,17 +95,20 @@
 ## Core Workflow Patterns
 
 ### A. Design and Generate New Terraform Infrastructure
-1. Use `aws-documentation` to research AWS service requirements and best practices
-2. Use `terraform` to generate initial Terraform configuration with proper syntax
-3. Use `terraform` to validate configuration and run security checks with Checkov
-4. Use `aws-pricing` to estimate costs and optimize resource selection
-5. Refine until valid, secure, and cost-effective
+1. **MANDATORY**: Use `aws-documentation` to research AWS service integration patterns and event formats
+2. **MANDATORY**: Use `aws-documentation` to understand service limits, quotas, and constraints
+3. Use `aws-documentation` to research AWS service requirements and best practices
+4. Use `terraform` to generate initial Terraform configuration with proper syntax
+5. Use `terraform` to validate configuration and run security checks with Checkov
+6. Use `aws-pricing` to estimate costs and optimize resource selection
+7. Refine until valid, secure, and cost-effective
 
 ### B. Deploy and Manage Terraform Infrastructure
-1. Use `terraform` to execute init, plan, and validate commands
-2. Review plan output for security and cost implications
-3. Use `terraform` to apply changes with proper validation
-4. Use `aws-documentation` for troubleshooting and configuration references
+1. **MANDATORY**: Use proper working directory (`terraform/environments/dev`)
+2. Use `terraform` MCP to execute init, plan, and validate commands
+3. Review plan output for security and cost implications
+4. Use `terraform` MCP to apply changes with proper validation
+5. Use `aws-documentation` for troubleshooting and configuration references
 
 ### C. Cost Analysis and Optimization
 1. Use `aws-pricing` to get real-time pricing for AWS services
@@ -132,3 +135,26 @@
 4. Create sequence diagrams for process flows and user interactions
 5. Build flow charts for decision trees and workflow documentation
 6. Use clustering and styling for organized, readable diagrams
+
+### G. AWS Service Integration Research (MANDATORY BEFORE CODING)
+1. **CRITICAL**: Use `aws-documentation` to search for service integration patterns
+2. **CRITICAL**: Research event formats and data structures (especially for Lambda integrations)
+3. **CRITICAL**: Understand API versions and compatibility (e.g., API Gateway v1 vs v2)
+4. **CRITICAL**: Review authentication and permission requirements
+5. **CRITICAL**: Study error handling and troubleshooting patterns
+6. **CRITICAL**: Validate assumptions with official AWS documentation
+
+#### Example: API Gateway + Lambda Integration Research
+```bash
+# Step 1: Research integration patterns
+mcp_aws_documentation search_documentation --search_phrase "API Gateway Lambda integration"
+
+# Step 2: Understand event format differences
+mcp_aws_documentation search_documentation --search_phrase "API Gateway v1 v2 event format differences"
+
+# Step 3: Read specific integration guide
+mcp_aws_documentation read_documentation --url "api_gateway_lambda_integration_url"
+
+# Step 4: Research common issues
+mcp_aws_documentation search_documentation --search_phrase "API Gateway Lambda integration troubleshooting"
+```

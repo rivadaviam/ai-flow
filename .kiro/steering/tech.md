@@ -59,8 +59,49 @@ The workspace includes 6 specialized MCP servers:
 - **Terraform Structure**: `variables.tf`, `outputs.tf`, `main.tf`, modules
 
 ## Best Practices
+- **MANDATORY**: Always use MCP servers when available - never bypass them
+- **MANDATORY**: Follow clean project structure - no Terraform files in root directory
 - Always follow AWS Well-Architected principles
 - Use least privilege IAM policies
 - Enable encryption and logging by default
 - Validate Terraform before applying
 - Document architecture decisions and cost implications
+
+## Project Structure Rules (MANDATORY)
+- **Use Project Template**: MUST use `docs/templates/new-project-structure-template.md` for all new projects
+- **Clean Root Directory**: Maximum 5 files in project root (README.md, .gitignore, LICENSE only)
+- **Terraform Organization**: ALL Terraform code in `terraform/environments/dev/` directory
+- **Source Code Structure**: Application code in `src/`, build artifacts in `build/` (gitignored)
+- **Documentation Structure**: All docs in `docs/` with proper categorization
+- **No Clutter**: No temporary files, build artifacts, or scripts in root directory
+- **Structure Validation**: Run validation commands before any commit
+
+## MCP Server Usage Rules (MANDATORY)
+- **Documentation-First**: MUST research AWS services via `aws-documentation` MCP BEFORE any integration
+- **Diagrams**: MUST use `aws-diagram` MCP server - no manual alternatives
+- **Infrastructure**: MUST use `terraform` MCP server for all Terraform operations
+- **Documentation**: MUST use `aws-documentation` for AWS service research
+- **Pricing**: MUST use `aws-pricing` for cost analysis
+- **Bedrock**: MUST use `bedrock-agentcore` and `bedrock-kb-retrieval`
+- **Activation Required**: Always activate MCP servers before use
+- **Document Bypasses**: Any MCP server bypass must be documented in lessons-learned.md
+
+## Documentation-First Policy (PREVENTS 80% OF INTEGRATION ISSUES)
+### BEFORE Any AWS Service Integration:
+1. **MANDATORY**: Use `aws-documentation` MCP to research service integration patterns
+2. **MANDATORY**: Understand event formats, data structures, and API specifications
+3. **MANDATORY**: Review service limits, quotas, and constraints
+4. **MANDATORY**: Study authentication and permission requirements
+5. **MANDATORY**: Research common issues and troubleshooting patterns
+
+### Documentation Research Commands:
+```bash
+# Research integration patterns
+mcp_aws_documentation search_documentation --search_phrase "[Service A] [Service B] integration"
+
+# Read specific integration guides
+mcp_aws_documentation read_documentation --url "integration_guide_url"
+
+# Get related documentation
+mcp_aws_documentation recommend --url "integration_guide_url"
+```

@@ -2,7 +2,9 @@
   "mcpServers": {
     "aws-documentation": {
       "command": "uvx",
-      "args": ["awslabs.aws-documentation-mcp-server@latest"],
+      "args": [
+        "awslabs.aws-documentation-mcp-server@latest"
+      ],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR"
       },
@@ -11,29 +13,40 @@
     },
     "terraform": {
       "command": "uvx",
-      "args": ["awslabs.terraform-mcp-server@latest"],
+      "args": [
+        "awslabs.terraform-mcp-server@latest"
+      ],
       "env": {
         "AWS_PROFILE": "default",
         "AWS_REGION": "us-east-1",
         "FASTMCP_LOG_LEVEL": "ERROR"
       },
       "disabled": false,
-      "autoApprove": []
+      "autoApprove": [
+        "SearchAwsProviderDocs",
+        "ExecuteTerraformCommand"
+      ]
     },
     "aws-pricing": {
       "command": "uvx",
-      "args": ["awslabs.aws-pricing-mcp-server@latest"],
+      "args": [
+        "awslabs.aws-pricing-mcp-server@latest"
+      ],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR",
         "AWS_PROFILE": "default",
         "AWS_REGION": "us-east-1"
       },
       "disabled": false,
-      "autoApprove": []
+      "autoApprove": [
+        "get_pricing"
+      ]
     },
     "bedrock-agentcore": {
       "command": "uvx",
-      "args": ["awslabs.amazon-bedrock-agentcore-mcp-server@latest"],
+      "args": [
+        "awslabs.amazon-bedrock-agentcore-mcp-server@latest"
+      ],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR"
       },
@@ -42,7 +55,9 @@
     },
     "bedrock-kb-retrieval": {
       "command": "uvx",
-      "args": ["awslabs.bedrock-kb-retrieval-mcp-server@latest"],
+      "args": [
+        "awslabs.bedrock-kb-retrieval-mcp-server@latest"
+      ],
       "env": {
         "AWS_PROFILE": "default",
         "AWS_REGION": "us-east-1",
@@ -54,12 +69,16 @@
     },
     "aws-diagram": {
       "command": "uvx",
-      "args": ["awslabs.aws-diagram-mcp-server@latest"],
+      "args": [
+        "awslabs.aws-diagram-mcp-server@latest"
+      ],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR"
       },
       "disabled": false,
-      "autoApprove": []
+      "autoApprove": [
+        "list_icons"
+      ]
     }
   }
 }
